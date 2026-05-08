@@ -1,0 +1,85 @@
+Machine Learning Overview
+
+Machine learning (ML) is a field of artificial intelligence that focuses on building systems that learn from data to make predictions or decisions. The three main categories are supervised learning, unsupervised learning, and reinforcement learning. Supervised learning uses labeled data to train models for tasks such as classification and regression. Unsupervised learning discovers structure in unlabeled data using clustering or dimensionality reduction. Reinforcement learning trains agents via rewards and penalties to take actions in an environment.
+
+Overfitting and Regularization
+
+Overfitting occurs when a model learns the noise and idiosyncrasies of the training data rather than the underlying pattern, causing poor generalization to new data. Regularization techniques like L1 (lasso) and L2 (ridge) add penalty terms to the loss function to discourage overly complex models. Early stopping, dropout, and data augmentation are practical strategies to reduce overfitting.
+
+Bias–Variance Tradeoff
+
+The bias–variance tradeoff explains the balance between underfitting and overfitting. High bias models are too simple and underfit the data, while high variance models are too complex and overfit. The goal is to find model complexity that minimizes total expected error by balancing bias and variance.
+
+Cross-Validation
+
+Cross-validation is a technique to estimate model performance by partitioning the dataset into training and validation folds. k-fold cross-validation splits data into k subsets and iteratively trains on k-1 folds while validating on the remaining fold, producing a robust estimate of generalization error.
+
+Backpropagation and Neural Networks
+
+Backpropagation is an algorithm for training neural networks by computing gradients of the loss with respect to weights using the chain rule. These gradients are used by optimizers (e.g., SGD, Adam) to update weights and minimize loss. Deep learning models stack layers of nonlinear transforms to learn hierarchical features.
+
+Convolutional Neural Networks (CNNs)
+
+CNNs are specialized for grid-like data such as images. Convolutional layers apply local filters to detect spatially local patterns, pooling layers reduce spatial resolution and computation, and fully connected layers integrate features for final predictions. CNN architectures (e.g., ResNet, VGG) use skip connections and deeper stacks for improved performance.
+
+Recurrent and LSTM Networks
+
+Recurrent neural networks (RNNs) handle sequential data by maintaining hidden states across time steps but suffer from vanishing/exploding gradients. LSTM (Long Short-Term Memory) networks address these issues using gating mechanisms (input, forget, output gates) that control information flow and preserve long-range dependencies.
+
+Activation Functions
+
+Common activation functions include ReLU (Rectified Linear Unit), sigmoid, and tanh. ReLU is widely used due to its simplicity and reduced gradient vanishing for deep networks. Sigmoid and tanh are useful in specific architectures but can saturate for large inputs.
+
+Pooling Layers
+
+Pooling layers such as max pooling and average pooling downsample feature maps to reduce dimensionality, provide translation invariance, and decrease computational cost. Pooling helps networks focus on the most salient features.
+
+Transformer Architecture and Self-Attention
+
+The transformer architecture uses self-attention to model relationships between all positions in a sequence in parallel, enabling efficient training on large corpora. Self-attention computes attention scores between query, key, and value vectors to weight contributions of different tokens. Transformers are the basis of BERT, GPT, and many state-of-the-art NLP models.
+
+Word Embeddings and Semantic Representations
+
+Word embeddings map tokens to dense vectors where semantically similar words are close in vector space. Popular methods include Word2Vec, GloVe, and contextual embeddings produced by transformer models (e.g., BERT, RoBERTa). Embeddings capture syntax and semantics useful for downstream tasks.
+
+Transfer Learning in NLP
+
+Transfer learning pre-trains large models on massive unlabeled corpora and fine-tunes them on task-specific data. BERT (Bidirectional Encoder Representations from Transformers) uses masked language modeling and next-sentence prediction during pre-training; fine-tuning adapts the model for classification, QA, or other tasks.
+
+GPT and Autoregressive Models
+
+GPT-style models are autoregressive: they predict the next token given previous tokens. These models are pre-trained on large text corpora and can be prompted for zero-shot or few-shot tasks. Instruction tuning and RLHF (Reinforcement Learning from Human Feedback) are applied to align model outputs with human preferences.
+
+Chain-of-Thought and Reasoning Techniques
+
+Chain-of-thought prompting encourages models to generate intermediate reasoning steps, improving performance on multi-step and complex reasoning tasks. It prompts the model to explicitly lay out a reasoning process before producing a final answer.
+
+Retrieval-Augmented Generation (RAG)
+
+RAG combines large language models with a retriever that fetches relevant documents from an external knowledge base. Retrieved passages are provided as context to the generator, grounding responses in external sources and improving factuality. Key components: a document splitter (chunking), an embedding model to encode text, a vector store (e.g., FAISS) for nearest-neighbor search, and a generator LLM.
+
+Chunking Strategy and Vector Search
+
+Chunking affects retrieval precision and how much context fits the model's input window. Common strategies include fixed-size chunks, semantic chunking (split by meaning), and hierarchical chunking. Vector databases and libraries like FAISS, Annoy, and HNSWlib support efficient nearest-neighbor search over high-dimensional embeddings.
+
+Advanced RAG Techniques
+
+Beyond basic retrieval, RAG systems can use re-ranking, query expansion, pseudo-relevance feedback, HyDE (generate hypothetical answers to improve retrieval), and iterative retrieval for multi-hop reasoning. Hybrid search combines sparse lexical retrieval (BM25) with dense vector retrieval for precision and recall.
+
+Evaluation and Faithfulness
+
+Faithfulness measures whether generated claims are supported by the retrieved context. RAGAS and similar toolkits evaluate RAG outputs using metrics such as faithfulness, answer relevancy, context recall, and context precision. Ground-truth references improve certain metrics like context recall.
+
+Guardrails and Safety
+
+Guardrails add validators and safety checks to LLM outputs to detect PII, enforce JSON schemas, and correct formatting. Common PII patterns include email addresses, phone numbers, SSNs, and credit card numbers; redaction and validators help prevent leaking sensitive data.
+
+Practical Tips for RAG
+
+- Use chunk_size around 500 tokens with 50 overlap as a starting point.
+- Choose k (retrieved passages) = 3 for many tasks, and tune based on task complexity.
+- If faithfulness is low, ensure the knowledge base contains explicit answers and consider smaller chunks or improved retrieval models.
+
+References
+
+FAISS, BERT, GPT, and transformer literature; RAGAS evaluation guidelines; Guardrails AI documentation; LangSmith tracing and Prompt Hub for versioning.

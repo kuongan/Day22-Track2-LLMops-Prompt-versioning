@@ -1,0 +1,48 @@
+=======================================================
+  Step 4: Guardrails AI Validators
+=======================================================
+
+=======================================================
+  JSON Formatting Demo
+=======================================================
+
+[Valid JSON] ✅ Pass
+  Input:  {"name": "Alice", "age": 30}
+  Output: {
+  "name": "Alice",
+  "age": 30
+}
+  🔧 JSON repaired successfully
+
+[Markdown fences] ✅ Pass
+  Input:  ```json
+{"name": "Bob"}
+```
+  Output: {
+  "name": "Bob"
+}
+  🔧 JSON repaired successfully
+
+[Single quotes] ✅ Pass
+  Input:  {'name': 'Charlie', 'score': 95}
+  Output: {
+  "name": "Charlie",
+  "score": 95
+}
+  🔧 JSON repaired successfully
+
+[Trailing comma] ✅ Pass
+  Input:  {"key": "value",}
+  Output: {
+  "key": "value"
+}
+  🔧 JSON repaired successfully
+
+[Truly invalid] ❌ Fail
+  Input:  This is not JSON at all: ??? {]
+  Output: {
+  "error": "Invalid JSON after repair attempt: Expecting value: line 1 column 1 (char 0)",
+  "raw": "This is not JSON at all: ??? {]"
+}
+
+✅ JSON Formatting Demo complete!
